@@ -39,7 +39,7 @@ class GroupController extends Controller
         $group->update($request->validated());
 
         return response()->json([
-            'data' => $group,
+            'data' => new GroupResource($group),
             'message' => 'Grupo atualizado com sucesso.'
         ], Response::HTTP_OK);
     }
