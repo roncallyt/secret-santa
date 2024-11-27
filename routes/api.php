@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\GetEventsFromGroupController;
 use App\Http\Controllers\GetUsersFromGroupController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\RegisterEventToTheGroupController;
 use App\Http\Controllers\RegisterUsersInTheGroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +22,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::get('/{group}/users', GetUsersFromGroupController::class)->name('group.user.index');
         Route::post('/{group}/users', RegisterUsersInTheGroupController::class)->name('group.user.store');
+
+        Route::get('/{group}/events', GetEventsFromGroupController::class)->name('group.event.index');
+        Route::post('/{group}/events', RegisterEventToTheGroupController::class)->name('group.event.store');
     });
 });
