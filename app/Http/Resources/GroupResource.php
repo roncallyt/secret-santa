@@ -16,7 +16,8 @@ class GroupResource extends JsonResource
             'status' => [
                 'label' => $this->status->label(),
                 'value' => $this->status->value
-            ]
+            ],
+            'users' => UserResource::collection($this->whenLoaded('users'))
         ];
     }
 }

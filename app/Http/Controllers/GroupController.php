@@ -19,7 +19,7 @@ class GroupController extends Controller
 
     public function store(GroupRequest $request): JsonResponse
     {
-        $group = Group::create($request->validated());
+        $group = $request->user()->groups()->create($request->validated());
 
         return response()->json([
             'data' => new GroupResource($group),
@@ -30,7 +30,7 @@ class GroupController extends Controller
     public function show(Request $request, Group $group): JsonResponse
     {
         return response()->json([
-            'data' => new GroupResource($group),
+            'data' => new GroupResource($group->load('users')),
         ], Response::HTTP_FOUND);
     }
 
